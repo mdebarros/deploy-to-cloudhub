@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mule</groupId>
     <artifactId>deploy-to-cloudhub</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${TRAVIS_JOB_ID}</version>
     <packaging>mule</packaging>
 
     <build>
@@ -21,8 +21,7 @@
                             <goal>cloudhub-deploy</goal>
                         </goals>
                         <configuration>
-                            <domain>sit-bvb-test</domain>
-                            <!--<domain>sit-bvb-test</domain> -->
+                            <domain>${cloudhub.env}-bvb-test</domain>
                             <!--<domain>${cloudhub.domain}</domain>-->
                             <environment>sit</environment>
                             <maxWaitTime>300000</maxWaitTime>
@@ -33,7 +32,7 @@
         </plugins>
     </build>
 
-<pluginRepositories>
+    <pluginRepositories>
         <pluginRepository>
             <id>mulesoft-release</id>
             <name>mulesoft release repository</name>

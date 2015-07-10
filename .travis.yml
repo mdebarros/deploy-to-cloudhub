@@ -2,7 +2,10 @@ language: java
 jdk:
   - oraclejdk7
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings ./settings.xml
-script: mvn clean package --settings ./settings.xml
+script: mvn --settings ./settings.xml -Dcloudhub.env=${cloudhub.env} clean deploy
 #after_success: mvn clean deploy --settings ./settings.xml
-before_deploy: mvn cloudhub:undeploy -Dcloudhub.username=username -Dcloudhub.password=password -Dcloudhub.domain=testdomain
-deploy: cloudhub:deploy -Dcloudhub.username=username -Dcloudhub.password=password -Dcloudhub.domain=testdomain -Dapplication=/path/to/app.zip -Dcloudhub.muleVersion=3.6.0
+#before_deploy: mvn cloudhub:undeploy -Dcloudhub.username=username -Dcloudhub.password=password -Dcloudhub.domain=testdomain
+#deploy: 
+#	mvn cloudhub:deploy -Dcloudhub.username=username -Dcloudhub.password=password -Dcloudhub.domain=testdomain -Dapplication=/path/to/app.zip -Dcloudhub.muleVersion=3.6.0
+#	on:
+#		branch: /^(.*)dev(.*)$/
